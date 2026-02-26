@@ -29,7 +29,12 @@ package body Sensors is
             end if;
 
          when Sensors.Level       =>
-            null;
+            if S.Level_Value < Sensors.Fill_Level_Milliliter'Last then
+               S.Level_Value :=
+                 Sensors.Fill_Level_Milliliter'Succ (S.Level_Value);
+            else
+               S.Level_Value := Sensors.Fill_Level_Milliliter'First;
+            end if;
 
       end case;
    end Update;
