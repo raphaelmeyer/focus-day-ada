@@ -17,4 +17,21 @@ package body Sensors is
       Ada.Text_IO.New_Line;
    end Display;
 
+   procedure Update (S : in out Sensor) is
+   begin
+      case S.Kind is
+         when Sensors.Temperature =>
+            if S.Temperature_Value < Sensors.Surface_Temperature_C'Last then
+               S.Temperature_Value :=
+                 S.Temperature_Value + Sensors.Surface_Temperature_C'Delta;
+            else
+               S.Temperature_Value := Sensors.Surface_Temperature_C'First;
+            end if;
+
+         when Sensors.Level       =>
+            null;
+
+      end case;
+   end Update;
+
 end Sensors;

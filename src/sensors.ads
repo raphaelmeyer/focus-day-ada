@@ -20,5 +20,6 @@ package Sensors is
    end record;
 
    procedure Display (S : Sensor);
+   procedure Update (S : in out Sensor);
 
 end Sensors;
