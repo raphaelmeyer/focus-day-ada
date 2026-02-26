@@ -6,7 +6,7 @@ package Sensors is
 
    type Sensor_Kind is (Temperature, Level);
 
-   type Sensor (Kind : Sensor_Kind) is record
+   type Sensor_Type (Kind : Sensor_Kind) is record
       Id : Sensor_Id;
 
       case Kind is
@@ -19,9 +19,14 @@ package Sensors is
       end case;
    end record;
 
-   type Sensor_Access is access Sensor;
+   protected type Sensor (Kind : Sensor_Kind) is
+      procedure Initialize (Id : Sensor_Id);
+      procedure Display;
+      procedure Update;
+   private
+      Instance : Sensor_Type (Kind);
+   end Sensor;
 
-   procedure Display (S : Sensor);
-   procedure Update (S : in out Sensor);
+   type Sensor_Access is access Sensor;
 
 end Sensors;

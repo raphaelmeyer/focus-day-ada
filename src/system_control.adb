@@ -3,16 +3,18 @@ with Machine;
 
 procedure System_Control is
    T8 : constant Sensors.Sensor_Access :=
-     new Sensors.Sensor'
-       (Kind => Sensors.Temperature, Id => 808, Temperature_Value => <>);
+     new Sensors.Sensor (Kind => Sensors.Temperature);
    J6 : constant Sensors.Sensor_Access :=
-     new Sensors.Sensor'
-       (Kind => Sensors.Temperature, Id => 160, Temperature_Value => <>);
+     new Sensors.Sensor (Kind => Sensors.Temperature);
    S1 : constant Sensors.Sensor_Access :=
-     new Sensors.Sensor'(Kind => Sensors.Level, Id => 101, Level_Value => <>);
+     new Sensors.Sensor (Kind => Sensors.Level);
 
    Machine_Config : Machine.Configuration;
 begin
+   T8.Initialize (808);
+   J6.Initialize (160);
+   S1.Initialize (101);
+
    Machine.Add_Sensor (Machine_Config, T8);
    Machine.Add_Sensor (Machine_Config, J6);
    Machine.Add_Sensor (Machine_Config, S1);

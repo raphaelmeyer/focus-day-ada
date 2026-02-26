@@ -2,41 +2,55 @@ with Ada.Text_IO;
 
 package body Sensors is
 
-   procedure Display (S : Sensor) is
-   begin
-      Ada.Text_IO.Put ("Sensor " & S.Id'Image & " reports ");
+   protected body Sensor is
 
-      case S.Kind is
-         when Sensors.Temperature =>
-            Ada.Text_IO.Put (S.Temperature_Value'Image & " C");
+      procedure Initialize (Id : Sensor_Id) is
+      begin
+         Instance.Id := Id;
+      end Initialize;
 
-         when Sensors.Level       =>
-            Ada.Text_IO.Put (S.Level_Value'Image & " ml");
-      end case;
+      procedure Display is
+      begin
+         Ada.Text_IO.Put ("Sensor " & Instance.Id'Image & " reports ");
 
-      Ada.Text_IO.New_Line;
-   end Display;
+         case Instance.Kind is
+            when Sensors.Temperature =>
+               Ada.Text_IO.Put (Instance.Temperature_Value'Image & " C");
 
-   procedure Update (S : in out Sensor) is
-   begin
-      case S.Kind is
-         when Sensors.Temperature =>
-            if S.Temperature_Value < Sensors.Surface_Temperature_C'Last then
-               S.Temperature_Value :=
-                 S.Temperature_Value + Sensors.Surface_Temperature_C'Delta;
-            else
-               S.Temperature_Value := Sensors.Surface_Temperature_C'First;
-            end if;
+            when Sensors.Level       =>
+               Ada.Text_IO.Put (Instance.Level_Value'Image & " ml");
+         end case;
 
-         when Sensors.Level       =>
-            if S.Level_Value < Sensors.Fill_Level_Milliliter'Last then
-               S.Level_Value :=
-                 Sensors.Fill_Level_Milliliter'Succ (S.Level_Value);
-            else
-               S.Level_Value := Sensors.Fill_Level_Milliliter'First;
-            end if;
+         Ada.Text_IO.New_Line;
+      end Display;
 
-      end case;
-   end Update;
+      procedure Update is
+      begin
+         case Instance.Kind is
+            when Sensors.Temperature =>
+               if Instance.Temperature_Value
+                 < Sensors.Surface_Temperature_C'Last
+               then
+                  Instance.Temperature_Value :=
+                    Instance.Temperature_Value
+                    + Sensors.Surface_Temperature_C'Delta;
+               else
+                  Instance.Temperature_Value :=
+                    Sensors.Surface_Temperature_C'First;
+               end if;
+
+            when Sensors.Level       =>
+               if Instance.Level_Value < Sensors.Fill_Level_Milliliter'Last
+               then
+                  Instance.Level_Value :=
+                    Sensors.Fill_Level_Milliliter'Succ (Instance.Level_Value);
+               else
+                  Instance.Level_Value := Sensors.Fill_Level_Milliliter'First;
+               end if;
+
+         end case;
+      end Update;
+
+   end Sensor;
 
 end Sensors;
