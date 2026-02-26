@@ -13,7 +13,6 @@ package body Machine is
       loop
          Ada.Text_IO.Put_Line ("---");
          for Sensor of Config.Sensors loop
-            Sensor.all.Update;
             Sensor.all.Display;
          end loop;
          delay 1.0;

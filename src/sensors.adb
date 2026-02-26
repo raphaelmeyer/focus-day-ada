@@ -53,4 +53,12 @@ package body Sensors is
 
    end Sensor;
 
+   task body Sensor_Update is
+   begin
+      loop
+         Sensor.Update;
+         delay 0.1;
+      end loop;
+   end Sensor_Update;
+
 end Sensors;

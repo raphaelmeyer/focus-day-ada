@@ -9,6 +9,10 @@ procedure System_Control is
    S1 : constant Sensors.Sensor_Access :=
      new Sensors.Sensor (Kind => Sensors.Level);
 
+   T8_Update : Sensors.Sensor_Update (T8);
+   J6_Update : Sensors.Sensor_Update (J6);
+   S1_Update : Sensors.Sensor_Update (S1);
+
    Machine_Config : Machine.Configuration;
 begin
    T8.Initialize (808);

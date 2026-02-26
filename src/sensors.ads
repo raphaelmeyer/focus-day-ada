@@ -29,4 +29,6 @@ package Sensors is
 
    type Sensor_Access is access Sensor;
 
+   task type Sensor_Update (Sensor : Sensor_Access);
+
 end Sensors;
