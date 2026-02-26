@@ -1,0 +1,14 @@
+name = "system_control"
+description = "Ada Example for Focus Day Workshop"
+version = "0.1.0-dev"
+
+authors = ["Raphael Meyer"]
+licenses = "MIT"
+
+executables = ["system_control"]
+
+[build-profiles]
+"*" = "validation"
+
+[build-switches]
+"*".ada_version = "Ada2022"

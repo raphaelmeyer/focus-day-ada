@@ -1,0 +1,27 @@
+{
+  "folders": [
+    {
+      "path": "."
+    }
+  ],
+  "settings": {
+    "editor.renderWhitespace": "boundary",
+    "editor.formatOnSave": true,
+    "editor.tabSize": 2,
+    "[jsonc][json]": {
+      "editor.defaultFormatter": "vscode.json-language-features"
+    },
+    "[yaml]": {
+      "editor.defaultFormatter": "redhat.vscode-yaml"
+    },
+    "[ada]": {
+      "editor.tabSize": 3,
+      "editor.detectIndentation": false
+    }
+  },
+  "extensions": {
+    "recommendations": [
+      "adacore.ada"
+    ]
+  }
+}
