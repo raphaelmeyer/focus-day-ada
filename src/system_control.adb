@@ -1,20 +1,21 @@
 with Sensors;
+with Machine;
 
 procedure System_Control is
-   T8 : Sensors.Sensor :=
-     (Kind => Sensors.Temperature, Id => 808, Temperature_Value => <>);
-   J6 : Sensors.Sensor :=
-     (Kind => Sensors.Temperature, Id => 160, Temperature_Value => <>);
-   S1 : Sensors.Sensor :=
-     (Kind => Sensors.Level, Id => 101, Level_Value => <>);
-begin
-   loop
-      Sensors.Update (T8);
-      Sensors.Update (J6);
-      Sensors.Update (S1);
+   T8 : constant Sensors.Sensor_Access :=
+     new Sensors.Sensor'
+       (Kind => Sensors.Temperature, Id => 808, Temperature_Value => <>);
+   J6 : constant Sensors.Sensor_Access :=
+     new Sensors.Sensor'
+       (Kind => Sensors.Temperature, Id => 160, Temperature_Value => <>);
+   S1 : constant Sensors.Sensor_Access :=
+     new Sensors.Sensor'(Kind => Sensors.Level, Id => 101, Level_Value => <>);
 
-      Sensors.Display (T8);
-      Sensors.Display (J6);
-      Sensors.Display (S1);
-   end loop;
+   Machine_Config : Machine.Configuration;
+begin
+   Machine.Add_Sensor (Machine_Config, T8);
+   Machine.Add_Sensor (Machine_Config, J6);
+   Machine.Add_Sensor (Machine_Config, S1);
+
+   Machine.Monitor (Machine_Config);
 end System_Control;

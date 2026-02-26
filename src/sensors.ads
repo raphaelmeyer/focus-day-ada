@@ -19,6 +19,8 @@ package Sensors is
       end case;
    end record;
 
+   type Sensor_Access is access Sensor;
+
    procedure Display (S : Sensor);
    procedure Update (S : in out Sensor);
 
