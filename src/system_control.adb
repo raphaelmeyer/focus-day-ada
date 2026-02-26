@@ -1,8 +1,10 @@
 with Sensors;
 
 procedure System_Control is
-   T8 : constant Sensors.Sensor := (Id => 808, Temperature_Value => <>);
-   J6 : constant Sensors.Sensor := (Id => 160, Temperature_Value => <>);
+   T8 : constant Sensors.Sensor :=
+     (Kind => Sensors.Temperature, Id => 808, Temperature_Value => <>);
+   J6 : constant Sensors.Sensor :=
+     (Kind => Sensors.Temperature, Id => 160, Temperature_Value => <>);
 begin
    loop
       Sensors.Display (T8);
